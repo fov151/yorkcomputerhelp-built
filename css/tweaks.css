@@ -1,0 +1,89 @@
+/* Clean-up overrides for the ych theme — linked last, after the compiled Tailwind stack */
+:root { --orange: #ea580c; --orange-dark: #c2410c; --orange-50: #fff7ed; --orange-100: #ffedd5; }
+
+.hero-soft { background-color: #faf7f2; }
+
+/* desktop hero breathing room (lg:py-* utilities not in the compiled stack) */
+@media (min-width: 1024px) {
+  #home > .max-w-7xl, section.hero-soft > .max-w-7xl { padding-block: 6rem; }
+}
+
+/* utilities the compiled stack doesn't have */
+.bg-orange-50 { background-color: var(--orange-50); }
+.border-orange-100 { border-color: var(--orange-100); }
+.hover\:bg-orange-700:hover { background-color: var(--orange-dark); }
+.hover\:bg-gray-700:hover { background-color: #374151; }
+.hover\:shadow-sm:hover { box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); }
+.hover\:shadow-md:hover { box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); }
+.hover\:shadow-lg:hover { box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); }
+
+/* nav link buttons: quiet default, orange on hover — the Contact Us CTA keeps white on orange */
+header nav .hidden.md\:flex button:not(.bg-orange-600) {
+  color: #374151;
+}
+header nav .hidden.md\:flex button:not(.bg-orange-600):hover { color: var(--orange); }
+header nav .hidden.md\:flex button.bg-orange-600 { color: #fff; white-space: nowrap; }
+
+/* px-5 / py-2 lost their spacing scale in the compiled stack — restate for the CTA */
+header nav button.bg-orange-600 { padding: 0.5rem 1.25rem; line-height: 1.5rem; }
+
+
+/* services cards: large ghosted icon in the top-right corner instead of a chip */
+.svc-mark {
+  position: absolute;
+  top: -34px;
+  right: -34px;
+  width: 68px;
+  height: 68px;
+  color: var(--orange);
+  opacity: 0.16;
+  pointer-events: none;
+}
+.svc-mark path, .svc-mark polygon, .svc-mark line, .svc-mark ellipse, .svc-mark circle, .svc-mark rect { stroke-width: 1.25; }
+
+/* location page hero: monitor watermark sits well inside, clipped by the section edge */
+section.hero-soft .svc-mark { right: 16px; top: 10px; width: 120px; height: 120px; }
+
+/* utility the compiled stack lacks */
+.py-16 { padding-block: 4rem; }
+
+/* article card grids */
+@media (min-width: 768px) { .md-grid-2 { grid-column-gap: 1.5rem; grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1024px) { .lg-grid-3 { grid-column-gap: 1.5rem; grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+/* mobile-safe wrapping: area pills wrap, long contact lines break */
+.flex-wrap { flex-wrap: wrap; }
+.min-w-0 { min-width: 0; }
+.break-words { overflow-wrap: break-word; }
+body { overflow-x: hidden; }
+/* mobile menu floats under the fixed header, visible at any scroll position */
+#mobile-menu { position: fixed; top: 4rem; left: 0; right: 0; z-index: 45; }
+/* the in-flow spacer that reserves its height while closed is unnecessary with fixed pos */
+.mt-16 { margin-top: 0; }
+
+
+
+/* article prose styling (no .prose utilities in the compiled stack) */
+.prose { color: #4b5563; line-height: 1.75; }
+.prose p { margin-bottom: 1.25rem; }
+.prose h2 { font-size: 1.35rem; font-weight: 700; color: #111827; margin: 2rem 0 0.75rem; }
+.prose h3 { font-size: 1.1rem; font-weight: 600; color: #111827; margin: 1.5rem 0 0.5rem; }
+.prose ul, .prose ol { margin: 0 0 1.25rem 0; padding-left: 1.25rem; }
+.prose li { margin-bottom: 0.4rem; }
+.prose li::marker, .prose ol li::marker { color: #ea580c; }
+.prose a { color: #ea580c; text-decoration: underline; text-underline-offset: 2px; }
+.prose strong { color: #111827; font-weight: 600; }
+.prose blockquote { border-left: 3px solid var(--orange-100); padding-left: 1rem; color: #6b7280; font-style: italic; margin: 1.25rem 0; }
+.prose hr { border-color: #e5e7eb; margin: 2rem 0; }
+
+/* keep single-line CTA labels */
+#home button, #home .flex > a { white-space: nowrap; }
+#contact form button[type="submit"] { white-space: nowrap; }
+#contact form button[type="submit"]:disabled { pointer-events: none; }
+
+
+/* sections land below the fixed header when scrolled to */
+section[id] { scroll-margin-top: 4.5rem; }
+
+/* single-line CTA labels on the article CTA strips */
+.nowrap { white-space: nowrap; }
